@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace brew_coffee.Controllers
+namespace BrewCoffeeAPI.Controllers
 {
     [ApiController]
     [Route("[controller]")]

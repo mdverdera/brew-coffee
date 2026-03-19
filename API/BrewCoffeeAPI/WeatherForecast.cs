@@ -1,4 +1,4 @@
-namespace brew_coffee
+namespace BrewCoffeeAPI
 {
     public class WeatherForecast
     {

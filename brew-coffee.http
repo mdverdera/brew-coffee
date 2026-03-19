@@ -1,6 +1,0 @@
-@brew_coffee_HostAddress = http://localhost:5252
-
-GET {{brew_coffee_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

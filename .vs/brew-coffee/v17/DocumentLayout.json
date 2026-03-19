@@ -3,8 +3,43 @@
   "WorkspaceRootPath": "C:\\code\\brew-coffee\\brew-coffee\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|c:\\code\\brew-coffee\\brew-coffee\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|c:\\code\\brew-coffee\\brew-coffee\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|c:\\code\\brew-coffee\\brew-coffee\\interfaces\\datetimeprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|solutionrelative:interfaces\\datetimeprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|c:\\code\\brew-coffee\\brew-coffee\\interfaces\\idatetimeprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|solutionrelative:interfaces\\idatetimeprovider.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|c:\\code\\brew-coffee\\brew-coffee\\controllers\\brewcoffeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|solutionrelative:controllers\\brewcoffeescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|c:\\code\\brew-coffee\\brew-coffee\\brew\\getbrewcoffeehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|solutionrelative:brew\\getbrewcoffeehandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|c:\\code\\brew-coffee\\brew-coffee\\models\\brewcoffeeresultmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|solutionrelative:models\\brewcoffeeresultmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|c:\\code\\brew-coffee\\brew-coffee\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|c:\\code\\brew-coffee\\brew-coffee\\controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9981212B-2DA3-4B99-B3BC-931FC8F6215B}|brew-coffee.csproj|solutionrelative:controllers\\weatherforecastcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|c:\\code\\brew-coffee\\tests\\brew-coffee-test\\brewcoffeehandlertests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,6 +54,115 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": ".gitignore",
+              "DocumentMoniker": "C:\\code\\brew-coffee\\brew-coffee\\.gitignore",
+              "RelativeDocumentMoniker": ".gitignore",
+              "ToolTip": "C:\\code\\brew-coffee\\brew-coffee\\.gitignore",
+              "RelativeToolTip": ".gitignore",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2026-03-19T15:10:06.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\code\\brew-coffee\\brew-coffee\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\code\\brew-coffee\\brew-coffee\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T14:52:42.069Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "BrewCoffeesController.cs",
+              "DocumentMoniker": "C:\\code\\brew-coffee\\brew-coffee\\Controllers\\BrewCoffeesController.cs",
+              "RelativeDocumentMoniker": "Controllers\\BrewCoffeesController.cs",
+              "ToolTip": "C:\\code\\brew-coffee\\brew-coffee\\Controllers\\BrewCoffeesController.cs",
+              "RelativeToolTip": "Controllers\\BrewCoffeesController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwA0AAAAkAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T14:51:06.976Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GetBrewCoffeeHandler.cs",
+              "DocumentMoniker": "C:\\code\\brew-coffee\\brew-coffee\\Brew\\GetBrewCoffeeHandler.cs",
+              "RelativeDocumentMoniker": "Brew\\GetBrewCoffeeHandler.cs",
+              "ToolTip": "C:\\code\\brew-coffee\\brew-coffee\\Brew\\GetBrewCoffeeHandler.cs",
+              "RelativeToolTip": "Brew\\GetBrewCoffeeHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACQAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T14:42:44.685Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IDateTimeProvider.cs",
+              "DocumentMoniker": "C:\\code\\brew-coffee\\brew-coffee\\Interfaces\\IDateTimeProvider.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IDateTimeProvider.cs",
+              "ToolTip": "C:\\code\\brew-coffee\\brew-coffee\\Interfaces\\IDateTimeProvider.cs",
+              "RelativeToolTip": "Interfaces\\IDateTimeProvider.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T14:35:58.209Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "BrewCoffeeHandlerTests.cs",
+              "DocumentMoniker": "C:\\code\\brew-coffee\\brew-coffee\\Tests\\brew-coffee-test\\BrewCoffeeHandlerTests.cs",
+              "RelativeDocumentMoniker": "Tests\\brew-coffee-test\\BrewCoffeeHandlerTests.cs",
+              "ToolTip": "C:\\code\\brew-coffee\\brew-coffee\\Tests\\brew-coffee-test\\BrewCoffeeHandlerTests.cs",
+              "RelativeToolTip": "Tests\\brew-coffee-test\\BrewCoffeeHandlerTests.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T14:15:36.603Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "DateTimeProvider.cs",
+              "DocumentMoniker": "C:\\code\\brew-coffee\\brew-coffee\\Interfaces\\DateTimeProvider.cs",
+              "RelativeDocumentMoniker": "Interfaces\\DateTimeProvider.cs",
+              "ToolTip": "C:\\code\\brew-coffee\\brew-coffee\\Interfaces\\DateTimeProvider.cs",
+              "RelativeToolTip": "Interfaces\\DateTimeProvider.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T14:55:43.61Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "BrewCoffeeResultModel.cs",
+              "DocumentMoniker": "C:\\code\\brew-coffee\\brew-coffee\\Models\\BrewCoffeeResultModel.cs",
+              "RelativeDocumentMoniker": "Models\\BrewCoffeeResultModel.cs",
+              "ToolTip": "C:\\code\\brew-coffee\\brew-coffee\\Models\\BrewCoffeeResultModel.cs",
+              "RelativeToolTip": "Models\\BrewCoffeeResultModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-19T14:34:46.948Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\code\\brew-coffee\\brew-coffee\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "C:\\code\\brew-coffee\\brew-coffee\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-03-19T13:11:24.012Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "WeatherForecastController.cs",
               "DocumentMoniker": "C:\\code\\brew-coffee\\brew-coffee\\Controllers\\WeatherForecastController.cs",
               "RelativeDocumentMoniker": "Controllers\\WeatherForecastController.cs",
@@ -26,8 +170,7 @@
               "RelativeToolTip": "Controllers\\WeatherForecastController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-03-19T12:57:12.63Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-03-19T12:57:12.63Z"
             }
           ]
         }
