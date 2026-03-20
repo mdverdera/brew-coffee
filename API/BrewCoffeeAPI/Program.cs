@@ -15,6 +15,7 @@ builder.Services.AddMediatR(cfg =>
 });
 
 builder.Services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
+builder.Services.AddHttpClient<IWeatherService, WeatherService>();
 
 var app = builder.Build();
 
