@@ -1,8 +1,9 @@
-﻿using BrewCoffeeAPI.Models;
-using System.Diagnostics;
+﻿using BrewCoffeeAPI.Interfaces;
+using BrewCoffeeAPI.Models;
 using System.Text.Json;
+using static BrewCoffeeAPI.Commons.Constants;
 
-namespace BrewCoffeeAPI.Interfaces
+namespace BrewCoffeeAPI.Services
 {
     public class WeatherService : IWeatherService
     {
@@ -13,17 +14,18 @@ namespace BrewCoffeeAPI.Interfaces
             _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<WeatherResponseModel> GetTemperatureAsync()
+        public async Task<WeatherResponseModel> GetTemperatureAsync(double lat, double lon)
         {
+            var apiKey = Environment.GetEnvironmentVariable("OPENWEATHER_API_KEY");
             var client = _httpClientFactory.CreateClient("OpenWeather");
 
             var response = await client.GetAsync(
-                "data/2.5/weather?lat=14.6581&lon=121.0546&units=metric&APPID=7d09ac2bc8c2adde406121c57198eca7");
+                $"{OpenWeatherEndpoints.CurrentWeather}?lat={lat}&lon={lon}&units=metric&APPID={apiKey}");
 
             response.EnsureSuccessStatusCode();
 
             var json = await response.Content.ReadAsStringAsync();
-            Debug.WriteLine($"Received weather data: {json}");
+            Console.WriteLine($"Received weather data: {json}");
 
             var data = JsonSerializer.Deserialize<WeatherResponseModel>(json);
 

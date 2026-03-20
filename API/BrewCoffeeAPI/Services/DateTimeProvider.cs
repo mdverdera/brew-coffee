@@ -1,4 +1,6 @@
-﻿namespace BrewCoffeeAPI.Interfaces
+﻿using BrewCoffeeAPI.Interfaces;
+
+namespace BrewCoffeeAPI.Services
 {
     public class DateTimeProvider : IDateTimeProvider
     {

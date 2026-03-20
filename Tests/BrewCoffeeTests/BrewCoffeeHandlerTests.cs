@@ -26,13 +26,13 @@ namespace BrewCoffeeTests
             _dateTimeProvider.Setup(x => x.Now)
                 .Returns(new DateTime(2026, 3, 19, 10, 56, 24));
 
-            _weatherService.Setup(x => x.GetTemperatureAsync())
+            _weatherService.Setup(x => x.GetTemperatureAsync(It.IsAny<double>(), It.IsAny<double>()))
                 .ReturnsAsync(MockData.MockData.CreateTempMock(24));
 
             _counterService.Setup(x => x.Increment())
                 .Returns(1);
 
-            var result = await _handler.Handle(new BrewCoffeeQuery(), default);
+            var result = await _handler.Handle(new BrewCoffeeQuery(It.IsAny<double>(), It.IsAny<double>(), null), default);
 
             Assert.Equal(200, result.StatusCode);
             Assert.NotNull(result.Prepared);
@@ -46,13 +46,13 @@ namespace BrewCoffeeTests
             _dateTimeProvider.Setup(x => x.Now)
                 .Returns(new DateTime(2026, 3, 19));
 
-            _weatherService.Setup(x => x.GetTemperatureAsync())
+            _weatherService.Setup(x => x.GetTemperatureAsync(It.IsAny<double>(), It.IsAny<double>()))
                 .ReturnsAsync(MockData.MockData.CreateTempMock(24));
 
             _counterService.Setup(x => x.Increment())
                 .Returns(5);
 
-            var result = await _handler.Handle(new BrewCoffeeQuery(), default);
+            var result = await _handler.Handle(new BrewCoffeeQuery(It.IsAny<double>(), It.IsAny<double>(), null), default);
 
             Assert.Equal(503, result.StatusCode);
             Assert.Null(result.Message);
@@ -65,13 +65,13 @@ namespace BrewCoffeeTests
             _dateTimeProvider.Setup(x => x.Now)
                 .Returns(new DateTime(2026, 4, 1));
 
-            _weatherService.Setup(x => x.GetTemperatureAsync())
+            _weatherService.Setup(x => x.GetTemperatureAsync(It.IsAny<double>(), It.IsAny<double>()))
                 .ReturnsAsync(MockData.MockData.CreateTempMock(24));
 
             _counterService.Setup(x => x.Increment())
                 .Returns(1);
 
-            var result = await _handler.Handle(new BrewCoffeeQuery(), default);
+            var result = await _handler.Handle(new BrewCoffeeQuery(It.IsAny<double>(), It.IsAny<double>(), null), default);
 
             Assert.Equal(418, result.StatusCode);
             Assert.Null(result.Message);
@@ -84,13 +84,13 @@ namespace BrewCoffeeTests
             _dateTimeProvider.Setup(x => x.Now)
                 .Returns(new DateTime(2026, 4, 1));
 
-            _weatherService.Setup(x => x.GetTemperatureAsync())
+            _weatherService.Setup(x => x.GetTemperatureAsync(It.IsAny<double>(), It.IsAny<double>()))
                 .ReturnsAsync(MockData.MockData.CreateTempMock(24));
 
             _counterService.Setup(x => x.Increment())
                 .Returns(5);
 
-            var result = await _handler.Handle(new BrewCoffeeQuery(), default);
+            var result = await _handler.Handle(new BrewCoffeeQuery(It.IsAny<double>(), It.IsAny<double>(), null), default);
             Assert.Equal(418, result.StatusCode);
 
         }
@@ -101,13 +101,13 @@ namespace BrewCoffeeTests
             _dateTimeProvider.Setup(x => x.Now)
                 .Returns(new DateTime(2026, 3, 20));
 
-            _weatherService.Setup(x => x.GetTemperatureAsync())
+            _weatherService.Setup(x => x.GetTemperatureAsync(It.IsAny<double>(), It.IsAny<double>()))
                 .ReturnsAsync(MockData.MockData.CreateTempMock(32));
 
             _counterService.Setup(x => x.Increment())
                 .Returns(1);
 
-            var result = await _handler.Handle(new BrewCoffeeQuery(), default);
+            var result = await _handler.Handle(new BrewCoffeeQuery(It.IsAny<double>(), It.IsAny<double>(), null), default);
 
             Assert.Equal(200, result.StatusCode);
             Assert.Equal("Your refreshing iced coffee is ready", result.Message);
@@ -119,13 +119,13 @@ namespace BrewCoffeeTests
             _dateTimeProvider.Setup(x => x.Now)
                 .Returns(new DateTime(2026, 3, 20));
 
-            _weatherService.Setup(x => x.GetTemperatureAsync())
+            _weatherService.Setup(x => x.GetTemperatureAsync(It.IsAny<double>(), It.IsAny<double>()))
                 .ReturnsAsync(MockData.MockData.CreateTempMock(24));
 
             _counterService.Setup(x => x.Increment())
                 .Returns(1);
 
-            var result = await _handler.Handle(new BrewCoffeeQuery(), default);
+            var result = await _handler.Handle(new BrewCoffeeQuery(It.IsAny<double>(), It.IsAny<double>(), null), default);
 
             Assert.Equal("Your piping hot coffee is ready", result.Message);
         }
@@ -136,13 +136,13 @@ namespace BrewCoffeeTests
             _dateTimeProvider.Setup(x => x.Now)
                 .Returns(new DateTime(2026, 3, 20));
 
-            _weatherService.Setup(x => x.GetTemperatureAsync())
+            _weatherService.Setup(x => x.GetTemperatureAsync(It.IsAny<double>(), It.IsAny<double>()))
                 .ReturnsAsync(MockData.MockData.CreateTempMock(30));
 
             _counterService.Setup(x => x.Increment())
                 .Returns(1);
 
-            var result = await _handler.Handle(new BrewCoffeeQuery(), default);
+            var result = await _handler.Handle(new BrewCoffeeQuery(It.IsAny<double>(), It.IsAny<double>(), null), default);
 
             Assert.Equal("Your piping hot coffee is ready", result.Message);
         }

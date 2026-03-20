@@ -1,6 +1,5 @@
 ﻿using BrewCoffeeAPI.Brew;
 using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BrewCoffeeAPI.Controllers
@@ -17,9 +16,18 @@ namespace BrewCoffeeAPI.Controllers
         }
 
         [HttpGet("/brew-coffee")]
-        public async Task<IActionResult> BrewCoffee()
+        public async Task<IActionResult> BrewCoffee(
+            [FromQuery] double? lat = null,
+            [FromQuery] double? lon = null,
+            [FromQuery] DateTime? date = null
+            )
         {
-            var result = await _mediator.Send(new BrewCoffeeQuery());
+            var result = await _mediator.Send(new BrewCoffeeQuery
+            (
+                lat,
+                lon,
+                date
+            ));
 
             return result.StatusCode switch
             {

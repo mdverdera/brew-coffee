@@ -4,6 +4,6 @@ namespace BrewCoffeeAPI.Interfaces
 {
     public interface IWeatherService
     {
-        Task<WeatherResponseModel> GetTemperatureAsync();
+        Task<WeatherResponseModel> GetTemperatureAsync(double lat, double lon);
     }
 }

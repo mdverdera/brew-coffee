@@ -8,6 +8,7 @@
 *.suo
 *.userosscache
 *.sln.docstates
+.env
 
 bin/
 obj/

@@ -1,17 +1,18 @@
 ﻿using BrewCoffeeAPI.Interfaces;
 using BrewCoffeeAPI.Models;
 using MediatR;
+using System.Net;
+using static BrewCoffeeAPI.Commons.Constants;
 
 namespace BrewCoffeeAPI.Brew
 {
-    public record BrewCoffeeQuery() : IRequest<BrewCoffeeResultModel>;
+    public record BrewCoffeeQuery(double? lat, double? lon, DateTime? date) : IRequest<BrewCoffeeResultModel>;
     public class GetBrewCoffeeHandler : IRequestHandler<BrewCoffeeQuery, BrewCoffeeResultModel>
     {
         private readonly IDateTimeProvider _dateTimeProvider;
         private readonly IWeatherService _weatherService;
         private readonly ICounterService _counterService;
-        private static int _counter = 0;
-
+        
         public GetBrewCoffeeHandler(IDateTimeProvider dateTimeProvider, IWeatherService weatherService, ICounterService counterService)
         {
             _dateTimeProvider = dateTimeProvider;
@@ -21,10 +22,11 @@ namespace BrewCoffeeAPI.Brew
 
         public async Task<BrewCoffeeResultModel> Handle(BrewCoffeeQuery request, CancellationToken cancellationToken)
         {
-            var april1stConfig = false; // Set to true to simulate April 1st behavior for testing purposes
-            var now = april1stConfig ? new DateTime(2026, 4, 1) : _dateTimeProvider.Now; 
+            var lat = request.lat ?? 14.6583; //I just input my location as default
+            var lon = request.lon ?? 121.0547; //I just input my location as default
+            var dateRequest = request.date ?? _dateTimeProvider.Now; //to override current date for testing purposes 
 
-            if (now.Month == 4 && now.Day == 1)
+            if (dateRequest.Month == 4 && dateRequest.Day == 1)
             {
                 return new BrewCoffeeResultModel
                 {
@@ -42,17 +44,17 @@ namespace BrewCoffeeAPI.Brew
                 };
             }
 
-            var temperature = await _weatherService.GetTemperatureAsync();
+            var temperature = await _weatherService.GetTemperatureAsync(lat, lon);
 
             var message = temperature.main.temp > 30
-                ? "Your refreshing iced coffee is ready"
-                : "Your piping hot coffee is ready";
+                ? Messages.IcedCoffee
+                : Messages.HotCoffee;
 
             return new BrewCoffeeResultModel
             {
                 StatusCode = 200,
                 Message = message,
-                Prepared = now.ToString("yyyy-MM-ddTHH:mm:sszzz")
+                Prepared = dateRequest.ToString("yyyy-MM-ddTHH:mm:sszzz")
             };
         }
     }
