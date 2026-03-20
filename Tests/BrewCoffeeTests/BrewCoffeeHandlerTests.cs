@@ -1,7 +1,7 @@
 using BrewCoffeeAPI.Brew;
 using BrewCoffeeAPI.Interfaces;
+using BrewCoffeeTests.MockData;
 using Moq;
-using System.Reflection.Metadata;
 
 namespace BrewCoffeeTests
 {
@@ -9,12 +9,15 @@ namespace BrewCoffeeTests
     {
         private readonly Mock<IDateTimeProvider> _dateTimeProvider;
         private readonly Mock<IWeatherService> _weatherService;
+        private readonly Mock<ICounterService> _counterService;
         private readonly GetBrewCoffeeHandler _handler;
 
         public BrewCoffeeHandlerTests()
         {
             _dateTimeProvider = new Mock<IDateTimeProvider>();
-            _handler = new GetBrewCoffeeHandler(_dateTimeProvider.Object, _weatherService.Object);
+            _weatherService = new Mock<IWeatherService>();
+            _counterService = new Mock<ICounterService>();
+            _handler = new GetBrewCoffeeHandler(_dateTimeProvider.Object, _weatherService.Object, _counterService.Object);
         }
 
         [Fact]
@@ -22,6 +25,12 @@ namespace BrewCoffeeTests
         {
             _dateTimeProvider.Setup(x => x.Now)
                 .Returns(new DateTime(2026, 3, 19, 10, 56, 24));
+
+            _weatherService.Setup(x => x.GetTemperatureAsync())
+                .ReturnsAsync(MockData.MockData.CreateTempMock(24));
+
+            _counterService.Setup(x => x.Increment())
+                .Returns(1);
 
             var result = await _handler.Handle(new BrewCoffeeQuery(), default);
 
@@ -37,10 +46,11 @@ namespace BrewCoffeeTests
             _dateTimeProvider.Setup(x => x.Now)
                 .Returns(new DateTime(2026, 3, 19));
 
-            for (int i = 0; i < 4; i++)
-            {
-                await _handler.Handle(new BrewCoffeeQuery(), default);
-            }
+            _weatherService.Setup(x => x.GetTemperatureAsync())
+                .ReturnsAsync(MockData.MockData.CreateTempMock(24));
+
+            _counterService.Setup(x => x.Increment())
+                .Returns(5);
 
             var result = await _handler.Handle(new BrewCoffeeQuery(), default);
 
@@ -55,6 +65,12 @@ namespace BrewCoffeeTests
             _dateTimeProvider.Setup(x => x.Now)
                 .Returns(new DateTime(2026, 4, 1));
 
+            _weatherService.Setup(x => x.GetTemperatureAsync())
+                .ReturnsAsync(MockData.MockData.CreateTempMock(24));
+
+            _counterService.Setup(x => x.Increment())
+                .Returns(1);
+
             var result = await _handler.Handle(new BrewCoffeeQuery(), default);
 
             Assert.Equal(418, result.StatusCode);
@@ -68,22 +84,28 @@ namespace BrewCoffeeTests
             _dateTimeProvider.Setup(x => x.Now)
                 .Returns(new DateTime(2026, 4, 1));
 
-            for (int i = 0; i < 5; i++)
-            {
-                var result = await _handler.Handle(new BrewCoffeeQuery(), default);
-                Assert.Equal(418, result.StatusCode);
-            }
+            _weatherService.Setup(x => x.GetTemperatureAsync())
+                .ReturnsAsync(MockData.MockData.CreateTempMock(24));
+
+            _counterService.Setup(x => x.Increment())
+                .Returns(5);
+
+            var result = await _handler.Handle(new BrewCoffeeQuery(), default);
+            Assert.Equal(418, result.StatusCode);
+
         }
 
         [Fact]
         public async Task BrewCoffee_TemperatureAbove30_ReturnIcedCoffee()
         {
-            var dateMock = new Mock<IDateTimeProvider>();
-            dateMock.Setup(x => x.Now)
+            _dateTimeProvider.Setup(x => x.Now)
                 .Returns(new DateTime(2026, 3, 20));
 
             _weatherService.Setup(x => x.GetTemperatureAsync())
-                .ReturnsAsync(31);
+                .ReturnsAsync(MockData.MockData.CreateTempMock(32));
+
+            _counterService.Setup(x => x.Increment())
+                .Returns(1);
 
             var result = await _handler.Handle(new BrewCoffeeQuery(), default);
 
@@ -94,12 +116,14 @@ namespace BrewCoffeeTests
         [Fact]
         public async Task BrewCoffee_TemperatureBelow30_ReturnHotCoffee()
         {
-            var dateMock = new Mock<IDateTimeProvider>();
-            dateMock.Setup(x => x.Now)
+            _dateTimeProvider.Setup(x => x.Now)
                 .Returns(new DateTime(2026, 3, 20));
 
             _weatherService.Setup(x => x.GetTemperatureAsync())
-                .ReturnsAsync(25);
+                .ReturnsAsync(MockData.MockData.CreateTempMock(24));
+
+            _counterService.Setup(x => x.Increment())
+                .Returns(1);
 
             var result = await _handler.Handle(new BrewCoffeeQuery(), default);
 
@@ -109,12 +133,14 @@ namespace BrewCoffeeTests
         [Fact]
         public async Task BrewCoffee_TemperatureEqual30_ReturnHotCoffee()
         {
-            var dateMock = new Mock<IDateTimeProvider>();
-            dateMock.Setup(x => x.Now)
+            _dateTimeProvider.Setup(x => x.Now)
                 .Returns(new DateTime(2026, 3, 20));
 
             _weatherService.Setup(x => x.GetTemperatureAsync())
-                .ReturnsAsync(30);
+                .ReturnsAsync(MockData.MockData.CreateTempMock(30));
+
+            _counterService.Setup(x => x.Increment())
+                .Returns(1);
 
             var result = await _handler.Handle(new BrewCoffeeQuery(), default);
 

@@ -9,12 +9,14 @@ namespace BrewCoffeeAPI.Brew
     {
         private readonly IDateTimeProvider _dateTimeProvider;
         private readonly IWeatherService _weatherService;
+        private readonly ICounterService _counterService;
         private static int _counter = 0;
 
-        public GetBrewCoffeeHandler(IDateTimeProvider dateTimeProvider, IWeatherService weatherService)
+        public GetBrewCoffeeHandler(IDateTimeProvider dateTimeProvider, IWeatherService weatherService, ICounterService counterService)
         {
             _dateTimeProvider = dateTimeProvider;
             _weatherService = weatherService;
+            _counterService = counterService;
         }
 
         public async Task<BrewCoffeeResultModel> Handle(BrewCoffeeQuery request, CancellationToken cancellationToken)
@@ -30,7 +32,7 @@ namespace BrewCoffeeAPI.Brew
                 };
             }
 
-            var count = Interlocked.Increment(ref _counter);
+            var count = _counterService.Increment();
 
             if (count % 5 == 0)
             {
@@ -42,7 +44,7 @@ namespace BrewCoffeeAPI.Brew
 
             var temperature = await _weatherService.GetTemperatureAsync();
 
-            var message = temperature > 30
+            var message = temperature.main.temp > 30
                 ? "Your refreshing iced coffee is ready"
                 : "Your piping hot coffee is ready";
 

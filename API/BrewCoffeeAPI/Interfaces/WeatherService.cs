@@ -6,24 +6,28 @@ namespace BrewCoffeeAPI.Interfaces
 {
     public class WeatherService : IWeatherService
     {
-        private readonly HttpClient _httpClient;
+        private readonly IHttpClientFactory _httpClientFactory;
 
-        public WeatherService(HttpClient httpClient)
+        public WeatherService(IHttpClientFactory httpClientFactory)
         {
-            _httpClient = httpClient;
+            _httpClientFactory = httpClientFactory;
         }
 
-        public async Task<double> GetTemperatureAsync()
+        public async Task<WeatherResponseModel> GetTemperatureAsync()
         {
-            var response = await _httpClient.GetAsync("https://api.openweathermap.org/data/3.0/onecall?lat=33.44&lon=-94.04&appid=7d09ac2bc8c2adde406121c57198eca7");
+            var client = _httpClientFactory.CreateClient("OpenWeather");
+
+            var response = await client.GetAsync(
+                "data/2.5/weather?lat=14.6581&lon=121.0546&units=metric&APPID=7d09ac2bc8c2adde406121c57198eca7");
 
             response.EnsureSuccessStatusCode();
 
-            var resultStream = await response.Content.ReadAsStreamAsync();
-            Debug.WriteLine($"Received weather data: {new StreamReader(resultStream).ReadToEnd()}");
-            var data = JsonSerializer.DeserializeAsync<WeatherResponseModel>(resultStream);
+            var json = await response.Content.ReadAsStringAsync();
+            Debug.WriteLine($"Received weather data: {json}");
 
-            return ??; //TODO: need to subscribe to OpenWeather for free API calls
-        }        
+            var data = JsonSerializer.Deserialize<WeatherResponseModel>(json);
+
+            return data;
+        }
     }
 }

@@ -15,8 +15,12 @@ builder.Services.AddMediatR(cfg =>
 });
 
 builder.Services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
-builder.Services.AddHttpClient<IWeatherService, WeatherService>();
-
+builder.Services.AddSingleton<ICounterService, CounterService>();
+builder.Services.AddSingleton<IWeatherService, WeatherService>();
+builder.Services.AddHttpClient("OpenWeather", client =>
+{
+    client.BaseAddress = new Uri("https://api.openweathermap.org/");
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
