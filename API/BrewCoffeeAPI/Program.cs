@@ -1,4 +1,6 @@
 using BrewCoffeeAPI.Interfaces;
+using BrewCoffeeAPI.Mappers;
+using BrewCoffeeAPI.Policies;
 using BrewCoffeeAPI.Services;
 using DotNetEnv;
 
@@ -20,7 +22,9 @@ builder.Services.AddMediatR(cfg =>
 
 builder.Services.AddSingleton<IDateTimeProvider, DateTimeProvider>();
 builder.Services.AddSingleton<ICounterService, CounterService>();
+builder.Services.AddSingleton<IAvailabilityPolicy, EveryNthRequestPolicy>();
 builder.Services.AddSingleton<IWeatherService, WeatherService>();
+builder.Services.AddSingleton<IBrewCoffeeResultMapper, BrewCoffeeResultMapper>();
 builder.Services.AddHttpClient("OpenWeather", client =>
 {
     client.BaseAddress = new Uri(baseUrl);

@@ -1,7 +1,6 @@
 ﻿using BrewCoffeeAPI.Interfaces;
 using BrewCoffeeAPI.Models;
 using MediatR;
-using System.Net;
 using static BrewCoffeeAPI.Commons.Constants;
 
 namespace BrewCoffeeAPI.Brew
@@ -11,13 +10,13 @@ namespace BrewCoffeeAPI.Brew
     {
         private readonly IDateTimeProvider _dateTimeProvider;
         private readonly IWeatherService _weatherService;
-        private readonly ICounterService _counterService;
-        
-        public GetBrewCoffeeHandler(IDateTimeProvider dateTimeProvider, IWeatherService weatherService, ICounterService counterService)
+        private readonly IAvailabilityPolicy _availabilityPolicy;
+
+        public GetBrewCoffeeHandler(IDateTimeProvider dateTimeProvider, IWeatherService weatherService, IAvailabilityPolicy availabilityPolicy)
         {
             _dateTimeProvider = dateTimeProvider;
             _weatherService = weatherService;
-            _counterService = counterService;
+            _availabilityPolicy = availabilityPolicy;
         }
 
         public async Task<BrewCoffeeResultModel> Handle(BrewCoffeeQuery request, CancellationToken cancellationToken)
@@ -34,14 +33,10 @@ namespace BrewCoffeeAPI.Brew
                 };
             }
 
-            var count = _counterService.Increment();
-
-            if (count % 5 == 0)
+            var policyResult = _availabilityPolicy.Evaluate(lat, lon, dateRequest);
+            if (policyResult != null)
             {
-                return new BrewCoffeeResultModel
-                {
-                    StatusCode = 503
-                };
+                return policyResult;
             }
 
             var temperature = await _weatherService.GetTemperatureAsync(lat, lon);

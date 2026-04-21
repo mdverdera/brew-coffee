@@ -1,4 +1,5 @@
 ﻿using BrewCoffeeAPI.Brew;
+using BrewCoffeeAPI.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,11 @@ namespace BrewCoffeeAPI.Controllers
     public class BrewCoffeeController : ControllerBase
     {
         private readonly IMediator _mediator;
-
-        public BrewCoffeeController(IMediator mediator)
+        private readonly IBrewCoffeeResultMapper _resultMapper;
+        public BrewCoffeeController(IMediator mediator, IBrewCoffeeResultMapper resultMapper)
         {
             _mediator = mediator;
+            _resultMapper = resultMapper;
         }
 
         [HttpGet("/brew-coffee")]
@@ -22,24 +24,8 @@ namespace BrewCoffeeAPI.Controllers
             [FromQuery] DateTime? date = null
             )
         {
-            var result = await _mediator.Send(new BrewCoffeeQuery
-            (
-                lat,
-                lon,
-                date
-            ));
-
-            return result.StatusCode switch
-            {
-                200 => Ok(new
-                {
-                    message = result.Message,
-                    prepared = result.Prepared
-                }),
-                503 => StatusCode(503),
-                418 => StatusCode(418),
-                _ => StatusCode(500)
-            };
+            var result = await _mediator.Send(new BrewCoffeeQuery(lat, lon, date));
+            return _resultMapper.Map(result);
         }
     }
 }

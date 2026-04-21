@@ -1,6 +1,6 @@
 using BrewCoffeeAPI.Brew;
 using BrewCoffeeAPI.Interfaces;
-using BrewCoffeeTests.MockData;
+using BrewCoffeeAPI.Models;
 using Moq;
 
 namespace BrewCoffeeTests
@@ -9,15 +9,15 @@ namespace BrewCoffeeTests
     {
         private readonly Mock<IDateTimeProvider> _dateTimeProvider;
         private readonly Mock<IWeatherService> _weatherService;
-        private readonly Mock<ICounterService> _counterService;
+        private readonly Mock<IAvailabilityPolicy> _availabilityPolicy;
         private readonly GetBrewCoffeeHandler _handler;
 
         public BrewCoffeeHandlerTests()
         {
             _dateTimeProvider = new Mock<IDateTimeProvider>();
             _weatherService = new Mock<IWeatherService>();
-            _counterService = new Mock<ICounterService>();
-            _handler = new GetBrewCoffeeHandler(_dateTimeProvider.Object, _weatherService.Object, _counterService.Object);
+            _availabilityPolicy = new Mock<IAvailabilityPolicy>();
+            _handler = new GetBrewCoffeeHandler(_dateTimeProvider.Object, _weatherService.Object, _availabilityPolicy.Object);
         }
 
         [Fact]
@@ -29,8 +29,9 @@ namespace BrewCoffeeTests
             _weatherService.Setup(x => x.GetTemperatureAsync(It.IsAny<double>(), It.IsAny<double>()))
                 .ReturnsAsync(MockData.MockData.CreateTempMock(24));
 
-            _counterService.Setup(x => x.Increment())
-                .Returns(1);
+            _availabilityPolicy
+                .Setup(x => x.Evaluate(It.IsAny<double>(), It.IsAny<double>(), It.IsAny<DateTime>()))
+                .Returns((BrewCoffeeResultModel?)null);
 
             var result = await _handler.Handle(new BrewCoffeeQuery(It.IsAny<double>(), It.IsAny<double>(), null), default);
 
@@ -49,8 +50,9 @@ namespace BrewCoffeeTests
             _weatherService.Setup(x => x.GetTemperatureAsync(It.IsAny<double>(), It.IsAny<double>()))
                 .ReturnsAsync(MockData.MockData.CreateTempMock(24));
 
-            _counterService.Setup(x => x.Increment())
-                .Returns(5);
+            _availabilityPolicy
+                .Setup(x => x.Evaluate(It.IsAny<double>(), It.IsAny<double>(), It.IsAny<DateTime>()))
+                .Returns(new BrewCoffeeResultModel { StatusCode = 503 });
 
             var result = await _handler.Handle(new BrewCoffeeQuery(It.IsAny<double>(), It.IsAny<double>(), null), default);
 
@@ -68,8 +70,9 @@ namespace BrewCoffeeTests
             _weatherService.Setup(x => x.GetTemperatureAsync(It.IsAny<double>(), It.IsAny<double>()))
                 .ReturnsAsync(MockData.MockData.CreateTempMock(24));
 
-            _counterService.Setup(x => x.Increment())
-                .Returns(1);
+            _availabilityPolicy
+                .Setup(x => x.Evaluate(It.IsAny<double>(), It.IsAny<double>(), It.IsAny<DateTime>()))
+                .Returns((BrewCoffeeResultModel?)null);
 
             var result = await _handler.Handle(new BrewCoffeeQuery(It.IsAny<double>(), It.IsAny<double>(), null), default);
 
@@ -87,8 +90,9 @@ namespace BrewCoffeeTests
             _weatherService.Setup(x => x.GetTemperatureAsync(It.IsAny<double>(), It.IsAny<double>()))
                 .ReturnsAsync(MockData.MockData.CreateTempMock(24));
 
-            _counterService.Setup(x => x.Increment())
-                .Returns(5);
+            _availabilityPolicy
+                .Setup(x => x.Evaluate(It.IsAny<double>(), It.IsAny<double>(), It.IsAny<DateTime>()))
+                .Returns(new BrewCoffeeResultModel { StatusCode = 503 });
 
             var result = await _handler.Handle(new BrewCoffeeQuery(It.IsAny<double>(), It.IsAny<double>(), null), default);
             Assert.Equal(418, result.StatusCode);
@@ -104,8 +108,9 @@ namespace BrewCoffeeTests
             _weatherService.Setup(x => x.GetTemperatureAsync(It.IsAny<double>(), It.IsAny<double>()))
                 .ReturnsAsync(MockData.MockData.CreateTempMock(32));
 
-            _counterService.Setup(x => x.Increment())
-                .Returns(1);
+            _availabilityPolicy
+                .Setup(x => x.Evaluate(It.IsAny<double>(), It.IsAny<double>(), It.IsAny<DateTime>()))
+                .Returns((BrewCoffeeResultModel?)null);
 
             var result = await _handler.Handle(new BrewCoffeeQuery(It.IsAny<double>(), It.IsAny<double>(), null), default);
 
@@ -122,8 +127,9 @@ namespace BrewCoffeeTests
             _weatherService.Setup(x => x.GetTemperatureAsync(It.IsAny<double>(), It.IsAny<double>()))
                 .ReturnsAsync(MockData.MockData.CreateTempMock(24));
 
-            _counterService.Setup(x => x.Increment())
-                .Returns(1);
+            _availabilityPolicy
+                .Setup(x => x.Evaluate(It.IsAny<double>(), It.IsAny<double>(), It.IsAny<DateTime>()))
+                .Returns((BrewCoffeeResultModel?)null);
 
             var result = await _handler.Handle(new BrewCoffeeQuery(It.IsAny<double>(), It.IsAny<double>(), null), default);
 
@@ -139,8 +145,9 @@ namespace BrewCoffeeTests
             _weatherService.Setup(x => x.GetTemperatureAsync(It.IsAny<double>(), It.IsAny<double>()))
                 .ReturnsAsync(MockData.MockData.CreateTempMock(30));
 
-            _counterService.Setup(x => x.Increment())
-                .Returns(1);
+            _availabilityPolicy
+                .Setup(x => x.Evaluate(It.IsAny<double>(), It.IsAny<double>(), It.IsAny<DateTime>()))
+                .Returns((BrewCoffeeResultModel?)null);
 
             var result = await _handler.Handle(new BrewCoffeeQuery(It.IsAny<double>(), It.IsAny<double>(), null), default);
 
